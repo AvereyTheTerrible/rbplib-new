@@ -22,6 +22,8 @@ namespace rbplib
 
     void ThreeWheelOdometry::step()
     {
-		pose(2) = 
+		pose(2) = (currentLeftAngularPosition - lastLeftAngularPosition + currentRightAngularPosition - lastRightAngularPosition)/trackWidth;
+    pose(1) = 2 * ((currentRightAngularPosition - lastRightAngularPosition)/pose(2)+ trackWidth) * sin(pose(2)/2);
+    pose(0) = 2* ((currentHorizontalAngularPosition - lastHorizontalAngularPosition)/pose(2) + encoderWheelRadius) * sin(pose(2)/2);
     }
 } // rbplib
